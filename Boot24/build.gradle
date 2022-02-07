@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.0'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group 'org.example.demo'
+version '1.0'
+sourceCompatibility = '11'
+
+sourceSets {
+    second
+    main {
+        compileClasspath += second.output;
+        runtimeClasspath += second.output;
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+    useJUnitPlatform()
+}
